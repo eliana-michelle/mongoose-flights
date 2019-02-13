@@ -1,0 +1,72 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+  font-size: 20px;
+}
+
+#button {
+  border: 1px black solid;
+  border-radius: 4px;
+  margin: 20px 0px;
+  font-size: 15px;
+  height: 50px;
+  width: 100px;
+}
+
+label {
+  font-size: 20px;
+}
+
+input, select {
+  margin: 5px 0px;
+  width: 200px;
+  height: 25px;
+  font-size: 15px;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
+}
+
+select {
+  font-size: 15px;
+  margin: 5px;
+}
+
+#checkbox {
+  height: 20px;
+  width: 20px;
+  margin: 0px;
+  padding: 0px;
+}
+
+table {
+  border: 1px solid black;
+  margin: 0px 0px 20px 0px;
+}
+
+th {
+  border: 1px solid black;
+  font-size: 15px;
+  width: 100px;
+  height: 25px;
+}
+
+td {
+  border: 1px solid black;
+  padding: 15px;
+  text-align: center
+}
+
+.passed {
+  color: red;
+}
