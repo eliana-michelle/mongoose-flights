@@ -14,6 +14,11 @@ var flightSchema = new Schema({
     departs:{
         type: Date, 
         default: +new Date() + 365*24*60*60*1000
+    },
+    airport:{
+        type: String,
+        enum:['AUS', 'DAL', 'LAX', 'SEA'],
+        default: 'SEA'
     }
 })
 
