@@ -1,32 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <link href="https://fonts.googleapis.com/css?family=Coiny|Work+Sans" rel="stylesheet">    <title>Flights</title>
-    <title>FLIGHT</title>
-</head>
-<body>
-    <nav>
-        <a class ='nav' href = "/flights">ALL FLIGHTS</a>
-        <a class = 'nav' href ="flights/new">ADD FLIGHT</a>
-    </nav>
-    <h1>FLIGHT <%=flight.flightNo%></h1>
-    <table>
-        <thead>
-            <th>AIRLINE</th>
-            <th>AIRPORT</th>
-            <th>DEPARTS</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td><%= flight.airline %></td>
-                <td><%= flight.airport %></td>
-                <td><%= flight.departs %></td>
-            </tr>
-        </tbody>
-    </table>
+<%- include('../partials/header') %>
+    <h1><%= flight.airline.toUpperCase() %> FLIGHT <%=flight.flightNo%></h1>
+<section id = "current-flight">
+    <div id = "flight-details">
+    <h4>DEPARTS FROM</h4>
+    <p class = "single"><%= flight.airport %></p>
+    <h4>DEPARTS</h4>
+    <p class = "single"><%= flight.departs.toLocaleDateString() %> at <%= flight.departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></p>
+    <h4>PREVIOUS DESTINATIONS</h4>
+    <% if (flight.destinations.length) { %> 
+        <% flight.destinations.sort(function(a,b) { %>
+            <% return a.arrival - b.arrival %>
+        <% }).forEach(function(d) { %>   
+        <ul>
+            <li><%= d.airport %> <%= d.arrival.toLocaleDateString()%> at <%= d.arrival.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></li>
+        </ul>
+               <% }); %>
+    <% } else { %>
+        <p class = "single"> No Previous Destinations</p>
+    <% } %>
+    <h4>TICKETS</h4>
+    <% tickets.forEach(function(t){ %>
+        <p><%= t.seat %> $<%= t.price %></p>
+    <% }) %>
+    </div>
+    <div class = "destinations">
+        <form id = "destination-form" method="POST" action = "/flights/<%= flight._id%>/destinations">
+            <h3>ADD DESTINATION</h3>
+            <label>AIRPORT:
+            <% if(flight.airport === 'AUS') { %>
+                <select name = "airport">
+                    <option value = 'DAL'>DAL</option>
+                    <option value = 'LAX'>LAX</option>
+                    <option value = 'SEA'>SEA</option>
+                </select>
+            <% } else if (flight.airport === 'DAL') { %>
+                <select name = "airport">
+                    <option value = 'AUS'>AUS</option>
+                    <option value = 'LAX'>LAX</option>
+                    <option value = 'SEA'>SEA</option>
+                </select>
+            <% } else if (flight.airport === 'LAX') { %>  
+                <select name = "airport">
+                    <option value = 'AUS'>AUS</option>
+                    <option value = 'DAL'>DAL</option>
+                    <option value = 'SEA'>SEA</option>
+                </select>
+            <% } else if (flight.airport === 'SEA') { %>  
+                 <select name = "airport">
+                    <option value = 'AUS'>AUS</option>
+                    <option value = 'DAL'>DAL</option>
+                    <option value = 'LAX'>LAX</option>
+                </select>
+            <% } %>
+            </label>
+            <label>ARRIVAL TIME:
+                <input type = "datetime-local" name = "arrival">
+            </label>
+                <input class = "button" type="submit" value="Add Destination">
+        </form><br><br>
+        <div id = "get-ticket">
+                <a href = "/flights/<%= flight._id %>/tickets/new" class = "button"  id = "ticket-button">Add New Ticket</a>
+    </div>
+        </section>
+</section>
 </body>
 </html>

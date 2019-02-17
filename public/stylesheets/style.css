@@ -10,6 +10,7 @@ body {
 a {
   color: #00B7FF;
   font-size: 20px;
+  text-decoration: none;
 }
 
 .button {
@@ -101,4 +102,78 @@ nav {
 form {
   border: 1px black solid;
   padding: 30px;
+}
+
+h3, h2 {
+  text-align: center;
+}
+
+
+#add-destination {
+  grid-column: span 2;
+}
+
+#destination-form {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 450px;
+}
+#destination-form label {
+  font-size: 30px;
+}
+
+#destination-form input[type = "submit"]{
+  display: grid;
+  margin-left:auto;
+  height: 100px;
+  width: 200px; 
+  font-size: 20px;
+}
+
+#current-flight{
+  display: grid;
+  width: 75%;
+  grid-template-columns: auto auto;
+  grid-gap: 100px;
+}
+
+#flight-details{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#get-ticket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  font-family: 'Coiny', cursive;
+}
+
+h4 {
+  border: 5px solid black;
+  padding: 10px;
+  margin: 0px;
+  font-size: 25px;
+  text-align: center;
+  grid-column: span 2;
+  background-color: navy;
+  color: white;
+}
+
+p {
+  text-align: center;
+  font-size: 20px;
+}
+
+#previous-destinations{
+  display: grid;
+
+}
+
+.single{
+  grid-column: span 2;
 }
