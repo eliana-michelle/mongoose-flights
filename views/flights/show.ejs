@@ -4,7 +4,7 @@
     <div id = "flight-details">
     <h4>DEPARTS FROM</h4>
     <p class = "single"><%= flight.airport %></p>
-    <h4>DEPARTS</h4>
+    <h4>DEPARTS AT</h4>
     <p class = "single"><%= flight.departs.toLocaleDateString() %> at <%= flight.departs.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></p>
     <h4>PREVIOUS DESTINATIONS</h4>
     <% if (flight.destinations.length) { %> 
@@ -20,12 +20,11 @@
     <% } %>
     <h4>TICKETS</h4>
     <% tickets.forEach(function(t){ %>
-        <p><%= t.seat %> $<%= t.price %></p>
+    <p><%= t.seat %> $<%= t.price %></p>
     <% }) %>
     </div>
     <div class = "destinations">
         <form id = "destination-form" method="POST" action = "/flights/<%= flight._id%>/destinations">
-            <h3>ADD DESTINATION</h3>
             <label>AIRPORT:
             <% if(flight.airport === 'AUS') { %>
                 <select name = "airport">
